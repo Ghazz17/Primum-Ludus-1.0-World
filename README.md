@@ -2,7 +2,7 @@
 
 This game is just for fun. <br>
 
-#Technology used:<br>
+# Technology used:<br>
 Apps: Godot Engine <br><br>
 #Programming language used:<br>
 1.Python <br>
