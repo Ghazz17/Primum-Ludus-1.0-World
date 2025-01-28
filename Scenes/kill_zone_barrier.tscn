@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv3fwb86jek8g"]
+
+[ext_resource type="Script" path="res://script/kill_zone_barrier.gd" id="1_l2em8"]
+[ext_resource type="AudioStream" uid="uid://d0j6p0v7kcynp" path="res://assets/sound/game-over_XWrLIoY.mp3" id="2_qj6hi"]
+
+[node name="kill_zone_barrier" type="Area2D"]
+script = ExtResource("1_l2em8")
+
+[node name="gameover_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_qj6hi")
+volume_db = 8.0
+max_distance = 1e+06
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
