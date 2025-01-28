@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://cyfav3a7h2e6i"]
+
+[ext_resource type="Script" path="res://script/turtle.gd" id="1_ukkdu"]
+[ext_resource type="Texture2D" uid="uid://w1y85evdbrkd" path="res://assets/Character/enemy/Turtle_32x32_red_death_R.png" id="2_rpke5"]
+[ext_resource type="Texture2D" uid="uid://ds1dk2n1lbe1h" path="res://assets/Character/enemy/Turtle_32x32_red_walk_R.png" id="2_ruxar"]
+[ext_resource type="PackedScene" uid="uid://c4y6jpscbhj0r" path="res://Scenes/kill_zone_turtle.tscn" id="5_57a3q"]
+[ext_resource type="AudioStream" uid="uid://ck2h485x6xe2i" path="res://assets/sound/super-mario-coin-sound.mp3" id="5_bd88b"]
+[ext_resource type="Script" path="res://script/kill_zone_turtle.gd" id="6_inyrj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ojbk"]
+atlas = ExtResource("2_ruxar")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0gfg"]
+atlas = ExtResource("2_ruxar")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vt3h1"]
+atlas = ExtResource("2_ruxar")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrxy1"]
+atlas = ExtResource("2_ruxar")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu3q5"]
+atlas = ExtResource("2_ruxar")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aixt"]
+atlas = ExtResource("2_ruxar")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ht2in"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rpke5")
+}],
+"loop": true,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ojbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0gfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vt3h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrxy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu3q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aixt")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3mgp5"]
+radius = 12.0416
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eedb"]
+size = Vector2(24, 2)
+
+[node name="Turtle" type="Node2D"]
+light_mask = 2
+script = ExtResource("1_ukkdu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ht2in")
+animation = &"move"
+autoplay = "move"
+frame = 1
+frame_progress = 0.62022
+
+[node name="KillZoneTurtle" parent="." instance=ExtResource("5_57a3q")]
+script = ExtResource("6_inyrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZoneTurtle"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_3mgp5")
+
+[node name="stomp" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stomp"]
+position = Vector2(-1, -11)
+shape = SubResource("RectangleShape2D_8eedb")
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_bd88b")
+bus = &"SFX"
+
+[connection signal="body_entered" from="stomp" to="." method="_on_stomp_body_entered"]
