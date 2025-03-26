@@ -8,7 +8,7 @@ Apps: Godot Engine <br><br>
 1.Godot Script <br> <br>
 
 # Inspirated:<br>
-1.Dea Afirzal<br>
+1.Dea Afrizal<br>
 2.Brackeys<br> <br>
 
 # Get the Assets:<br>
