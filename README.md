@@ -5,13 +5,12 @@ This game is just for fun. <br>
 # Technology used:<br>
 Apps: Godot Engine <br><br>
 # Programming language used:<br>
-1.Python <br>
-2.Godot Script <br>
-3.C# <br> <br>
+1.Godot Script <br> <br>
 
 # Inspirated:<br>
 1.Dea Afirzal<br>
 2.Brackeys<br> <br>
+
 # Get the Assets:<br>
 1.Myinstants.com<br>
 2.kenney.nl <br>
